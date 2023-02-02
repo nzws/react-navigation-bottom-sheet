@@ -1,5 +1,5 @@
 {
-  "name": "@th3rdwave/react-navigation-bottom-sheet",
+  "name": "@nzws/react-navigation-bottom-sheet",
   "version": "0.2.3",
   "description": "Bottom sheet component for React Navigation",
   "main": "lib/commonjs/index",
@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/th3rdwave/react-navigation-bottom-sheet#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
