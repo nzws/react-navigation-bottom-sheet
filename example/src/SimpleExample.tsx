@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import {
   BottomSheetScreenProps,
   createBottomSheetNavigator,
+  useLayoutHandler,
 } from '@th3rdwave/react-navigation-bottom-sheet';
 import * as React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
@@ -13,6 +14,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 type BottomSheetParams = {
   Home: undefined;
   Sheet: { id: number };
+  Sheet2: { id: number };
 };
 
 const BottomSheet = createBottomSheetNavigator<BottomSheetParams>();
@@ -29,6 +31,12 @@ function HomeScreen({
           navigation.navigate('Sheet', { id: 1 });
         }}
       />
+      <Button
+        title="Open detached sheet"
+        onPress={() => {
+          navigation.navigate('Sheet2', { id: 1 });
+        }}
+      />
     </View>
   );
 }
@@ -37,13 +45,22 @@ function SheetScreen({
   route,
   navigation,
 }: BottomSheetScreenProps<BottomSheetParams, 'Sheet'>) {
+  const onLayout = useLayoutHandler();
+  console.log(onLayout);
+
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={onLayout}>
       <Text>Sheet Screen {route.params.id}</Text>
       <Button
         title="Open new sheet"
         onPress={() => {
           navigation.navigate('Sheet', { id: route.params.id + 1 });
+        }}
+      />
+      <Button
+        title="Open new detached sheet"
+        onPress={() => {
+          navigation.navigate('Sheet2', { id: route.params.id + 1 });
         }}
       />
       <Button
@@ -86,6 +103,21 @@ export function SimpleExample() {
           name="Sheet"
           component={SheetScreen}
           getId={({ params }) => `sheet-${params.id}`}
+        />
+        <BottomSheet.Screen
+          name="Sheet2"
+          component={SheetScreen}
+          getId={({ params }) => `sheet-${params.id}`}
+          options={{
+            snapPoints: undefined,
+            detached: true,
+            bottomInset: 28,
+            style: {
+              marginHorizontal: 14,
+              borderRadius: 18,
+              overflow: 'hidden',
+            },
+          }}
         />
       </BottomSheet.Navigator>
     </NavigationContainer>

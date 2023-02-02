@@ -5,6 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import { ParamListBase, useTheme } from '@react-navigation/native';
 import * as React from 'react';
+import { DetachedBottomSheetModalScreen } from './DetachedBottomSheetView';
 import type {
   BottomSheetDescriptorMap,
   BottomSheetNavigationConfig,
@@ -117,8 +118,12 @@ export function BottomSheetView({ state, descriptors }: Props) {
               ...sheetProps
             } = options;
 
+            const Component = options.detached
+              ? DetachedBottomSheetModalScreen
+              : BottomSheetModalScreen;
+
             return (
-              <BottomSheetModalScreen
+              <Component
                 key={route.key}
                 // Make sure index is in range, it could be out if snapToIndex is persisted
                 // and snapPoints is changed.
@@ -136,7 +141,7 @@ export function BottomSheetView({ state, descriptors }: Props) {
                 {...sheetProps}
               >
                 {render()}
-              </BottomSheetModalScreen>
+              </Component>
             );
           })}
         </BottomSheetModalProvider>
