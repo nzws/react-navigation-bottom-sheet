@@ -38,6 +38,7 @@
   },
   "homepage": "https://github.com/th3rdwave/react-navigation-bottom-sheet#readme",
   "publishConfig": {
+    "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
