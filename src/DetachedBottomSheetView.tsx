@@ -31,6 +31,8 @@ export function DetachedBottomSheetModalScreen({
 
   const isMounted = React.useRef(true);
   React.useEffect(() => {
+    isMounted.current = true;
+
     return () => {
       isMounted.current = false;
     };

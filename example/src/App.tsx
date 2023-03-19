@@ -5,9 +5,11 @@ import { SimpleExample } from './SimpleExample';
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <SimpleExample />
-    </GestureHandlerRootView>
+    <React.StrictMode>
+      <GestureHandlerRootView style={styles.container}>
+        <SimpleExample />
+      </GestureHandlerRootView>
+    </React.StrictMode>
   );
 }
 

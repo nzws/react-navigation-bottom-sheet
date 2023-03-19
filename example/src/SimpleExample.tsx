@@ -2,14 +2,15 @@ import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
 } from '@gorhom/bottom-sheet';
-import { NavigationContainer } from '@react-navigation/native';
+import { CommonActions, NavigationContainer } from '@react-navigation/native';
 import {
   BottomSheetScreenProps,
   createBottomSheetNavigator,
   useLayoutHandler,
-} from '@th3rdwave/react-navigation-bottom-sheet';
+} from '@nzws/react-navigation-bottom-sheet';
 import * as React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
 type BottomSheetParams = {
   Home: undefined;
@@ -46,10 +47,9 @@ function SheetScreen({
   navigation,
 }: BottomSheetScreenProps<BottomSheetParams, 'Sheet'>) {
   const onLayout = useLayoutHandler();
-  console.log(onLayout);
 
   return (
-    <View style={styles.container} onLayout={onLayout}>
+    <View style={styles.container2} onLayout={onLayout}>
       <Text>Sheet Screen {route.params.id}</Text>
       <Button
         title="Open new sheet"
@@ -70,11 +70,21 @@ function SheetScreen({
         }}
       />
       <Button
+        title="Reset sheet"
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
+        }}
+      />
+      <Button
         title="Snap to top"
         onPress={() => {
           navigation.snapTo(1);
         }}
       />
+      <TextInput />
     </View>
   );
 }
@@ -126,4 +136,5 @@ export function SimpleExample() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  container2: { display: 'flex' },
 });
