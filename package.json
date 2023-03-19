@@ -1,6 +1,6 @@
 {
   "name": "@nzws/react-navigation-bottom-sheet",
-  "version": "0.2.3",
+  "version": "0.2.3-2023-03-19",
   "description": "Bottom sheet component for React Navigation",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
